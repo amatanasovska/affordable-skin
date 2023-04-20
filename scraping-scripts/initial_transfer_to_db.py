@@ -4,10 +4,10 @@ import pyodbc
 cnxn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};Server=(localdb)\mssqllocaldb;Database=AffordableSkin;Trusted_Connection=yes')
 # Connect to the database
 
-def insert_seller(name_seller):
+def insert_seller(name_seller, webpage):
     cursor = cnxn.cursor()
-    sql = "INSERT INTO Seller (Name) VALUES (?)"
-    values = (name_seller)
+    sql = "INSERT INTO Seller (Name, Webpage) VALUES (?, ?)"
+    values = (name_seller, webpage)
     cursor.execute(sql, values)
     cursor.commit()
     cursor.close()
@@ -23,17 +23,11 @@ def transform_shop(csv_file):
     name_seller = csv_file.split("_")[0]
     cursor = cnxn.cursor()
 
-    sql = f"Select S.Id from Seller S where S.Name = '{name_seller}'"
-    cursor.execute(sql)
-
-    # fetch the results
-    result = cursor.fetchall()[0]
-    seller_id = result[0]
 
 
     for index, row in df.iterrows():
-        sql = "INSERT INTO Product ({}) VALUES (?, ?, ?)".format(', '.join(column_mapping_product.keys())+",SellerId")
-        values = tuple([row[column_mapping_product[key]] for key in column_mapping_product.keys()] + [seller_id])
+        sql = "INSERT INTO Product ({}) VALUES (?, ?, ?)".format(', '.join(column_mapping_product.keys())+",SellerName")
+        values = tuple([row[column_mapping_product[key]] for key in column_mapping_product.keys()] + [name_seller])
         cursor.execute(sql, values)
         sql = f"Select P.Id from Product P where P.Name = ?"
         cursor.execute(sql,row['title'])
@@ -49,5 +43,5 @@ def transform_shop(csv_file):
     cnxn.close()
 
 if __name__=="__main__":
-    # insert_seller("yeppeuda")
+    insert_seller("yeppeuda","https://yeppeuda.mk/")
     transform_shop("yeppeuda_tiam.csv")
