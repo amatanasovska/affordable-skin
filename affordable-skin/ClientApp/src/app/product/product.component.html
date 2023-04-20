@@ -3,6 +3,9 @@
   <div class="card-body">
     <h5 class="card-title">{{product.name}}</h5>
     <p class="card-text"></p>
-    <a href="#" class="btn btn-primary">Check it out</a>
+
+    <a [routerLink]="['/view-product']"
+       [queryParams]="{ productToShow : product | json}"
+       class="btn btn-primary">Check it out</a>
   </div>
 </div>

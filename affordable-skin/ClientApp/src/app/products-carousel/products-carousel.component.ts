@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Product} from "../product/product.component";
+import {Product} from "../product";
+
 
 @Component({
   selector: 'app-products-carousel',

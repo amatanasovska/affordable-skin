@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ProductComponent } from './product/product.component';
 import {CarouselModule} from 'primeng/carousel';
 import {ProductsCarouselComponent} from "./products-carousel/products-carousel.component";
+import {ProductViewComponent} from "./product-view/product-view.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {ProductsCarouselComponent} from "./products-carousel/products-carousel.c
     CounterComponent,
     FetchDataComponent,
     ProductComponent,
-    ProductsCarouselComponent
+    ProductsCarouselComponent,
+    ProductViewComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -31,6 +33,7 @@ import {ProductsCarouselComponent} from "./products-carousel/products-carousel.c
       {path: '', component: HomeComponent, pathMatch: 'full'},
       {path: 'counter', component: CounterComponent},
       {path: 'fetch-data', component: FetchDataComponent},
+      {path: 'view-product', component:ProductViewComponent}
     ]),
     CarouselModule
   ],
