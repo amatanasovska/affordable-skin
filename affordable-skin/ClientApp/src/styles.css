@@ -18,3 +18,24 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+.custom-carousel > #pr_id_1 > div > ul > li
+{
+  display:none;
+}
+.custom-carousel > #pr_id_1 > div > div > button.p-ripple.p-element
+{
+    border: rgba(127, 208, 126, 0.26) solid;
+    border-radius: 3em;
+    height: 3em;
+    width: 3em;
+    color: #2a602c;
+}
+.custom-carousel > #pr_id_1 > div > div > button.p-ripple.p-element.p-carousel-prev.p-link:after
+{
+  content:"<";
+}
+
+.custom-carousel > #pr_id_1 > div > div > button.p-ripple.p-element.p-carousel-next.p-link:after
+{
+  content:">";
+}

@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ProductComponent } from './product/product.component';
+import {CarouselModule} from 'primeng/carousel';
+import {ProductsCarouselComponent} from "./products-carousel/products-carousel.component";
 
 @NgModule({
   declarations: [
@@ -18,17 +20,19 @@ import { ProductComponent } from './product/product.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    ProductComponent
+    ProductComponent,
+    ProductsCarouselComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
+      {path: '', component: HomeComponent, pathMatch: 'full'},
+      {path: 'counter', component: CounterComponent},
+      {path: 'fetch-data', component: FetchDataComponent},
+    ]),
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

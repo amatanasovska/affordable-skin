@@ -1,0 +1,5 @@
+<p-carousel [value]="products" [numVisible]="3" [numScroll]="1" class="custom-carousel">
+  <ng-template let-product pTemplate="item">
+    <app-product [product]="product"></app-product>
+  </ng-template>
+</p-carousel>
