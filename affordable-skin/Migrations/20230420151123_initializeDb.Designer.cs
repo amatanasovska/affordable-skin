@@ -11,8 +11,8 @@ using affordable_skin.Data;
 namespace affordable_skin.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230419150614_initialSetup1")]
-    partial class initialSetup1
+    [Migration("20230420151123_initializeDb")]
+    partial class initializeDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,21 @@ namespace affordable_skin.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SellerName");
 
                     b.ToTable("Product");
                 });
@@ -45,6 +59,9 @@ namespace affordable_skin.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
                     b.HasKey("Date", "ProductId");
 
                     b.HasIndex("ProductId");
@@ -54,15 +71,27 @@ namespace affordable_skin.Migrations
 
             modelBuilder.Entity("affordable_skin.Models.Seller", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Webpage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.ToTable("Seller");
+                });
+
+            modelBuilder.Entity("affordable_skin.Models.Product", b =>
+                {
+                    b.HasOne("affordable_skin.Models.Seller", "Seller")
+                        .WithMany()
+                        .HasForeignKey("SellerName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Seller");
                 });
 
             modelBuilder.Entity("affordable_skin.Models.ProductPrice", b =>

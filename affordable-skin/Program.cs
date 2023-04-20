@@ -1,4 +1,9 @@
 using affordable_skin.Data;
+using affordable_skin.Repositories;
+using affordable_skin.Repositories.GenericRepository;
+using affordable_skin.Repositories.Impl;
+using affordable_skin.Services;
+using affordable_skin.Services.Impl;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +12,22 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ShopContext>(options => options.UseSqlServer(       
     builder.Configuration.GetConnectionString("DefaultConnection")       
 ));
+
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: "AllowOrigin",
+        builder =>{
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
 
 var app = builder.Build();
 
@@ -18,6 +38,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCors("AllowOrigin");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

@@ -12,7 +12,8 @@ public class Product
     public int Id;
     public String Image { get; set; }
     public String Name { get; set; }
-    public int Price { get; set; }
+    [ForeignKey("Seller")]
+    public String SellerName { get; set; }
     public Seller Seller{ get; set; }
 
 

@@ -11,7 +11,7 @@ public class ProductPrice
     [ForeignKey("Product")]
     public int ProductId { get; set; }
     public Product Product { get; set; }
-    private String Date { get; set; }
-    private int Price { get; set; }
+    public String Date { get; set; }
+    public int Price { get; set; }
 
 }

@@ -37,16 +37,13 @@ namespace affordable_skin.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SellerId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SellerName")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SellerId", "SellerName");
+                    b.HasIndex("SellerName");
 
                     b.ToTable("Product");
                 });
@@ -71,9 +68,6 @@ namespace affordable_skin.Migrations
 
             modelBuilder.Entity("affordable_skin.Models.Seller", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(450)");
 
@@ -81,7 +75,7 @@ namespace affordable_skin.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id", "Name");
+                    b.HasKey("Name");
 
                     b.ToTable("Seller");
                 });
@@ -90,7 +84,7 @@ namespace affordable_skin.Migrations
                 {
                     b.HasOne("affordable_skin.Models.Seller", "Seller")
                         .WithMany()
-                        .HasForeignKey("SellerId", "SellerName")
+                        .HasForeignKey("SellerName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
