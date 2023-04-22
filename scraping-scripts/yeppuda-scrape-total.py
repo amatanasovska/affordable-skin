@@ -43,15 +43,15 @@ for link in links:
             
             product_image = element.find_element_by_css_selector("img").get_attribute("src")
             element_dict['image'] = product_image
-            try:
-                stock_info = element.find_element_by_css_selector(".no-stock-partials")
-                element_dict['stock_info'] = stock_info.text
-            except NoSuchElementException:
-                element_dict['stock_info'] = "AVAILABLE"
+            # try:
+            #     stock_info = element.find_element_by_css_selector(".no-stock-partials")
+            #     element_dict['stock_info'] = stock_info.text
+            # except NoSuchElementException:
+            #     element_dict['stock_info'] = "AVAILABLE"
             element_dict['title'] = element.find_element_by_css_selector(".product-title").text
             element_dict['price'] = element.find_element_by_css_selector(".price").text
             element_dict['date'] = date.today()
-            element_dict['brand'] = brand
+            element_dict['brand'] = brand.lower()
             element_dict['link'] = element.find_element_by_css_selector("div > div > div.product-img.hover-trigger > a:nth-child(1)").get_attribute("href")
             data.append(element_dict) 
 

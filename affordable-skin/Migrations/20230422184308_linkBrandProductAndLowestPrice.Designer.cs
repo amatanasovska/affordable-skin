@@ -11,8 +11,8 @@ using affordable_skin.Data;
 namespace affordable_skin.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230420151123_initializeDb")]
-    partial class initializeDb
+    [Migration("20230422184308_linkBrandProductAndLowestPrice")]
+    partial class linkBrandProductAndLowestPrice
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,21 +32,26 @@ namespace affordable_skin.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LowestPrice")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SellerName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("SellerName");
 
                     b.ToTable("Product");
                 });
@@ -62,9 +67,15 @@ namespace affordable_skin.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
+                    b.Property<string>("SellerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Date", "ProductId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("SellerName");
 
                     b.ToTable("ProductPrice");
                 });
@@ -83,17 +94,6 @@ namespace affordable_skin.Migrations
                     b.ToTable("Seller");
                 });
 
-            modelBuilder.Entity("affordable_skin.Models.Product", b =>
-                {
-                    b.HasOne("affordable_skin.Models.Seller", "Seller")
-                        .WithMany()
-                        .HasForeignKey("SellerName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Seller");
-                });
-
             modelBuilder.Entity("affordable_skin.Models.ProductPrice", b =>
                 {
                     b.HasOne("affordable_skin.Models.Product", "Product")
@@ -102,7 +102,15 @@ namespace affordable_skin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("affordable_skin.Models.Seller", "Seller")
+                        .WithMany()
+                        .HasForeignKey("SellerName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Product");
+
+                    b.Navigation("Seller");
                 });
 #pragma warning restore 612, 618
         }

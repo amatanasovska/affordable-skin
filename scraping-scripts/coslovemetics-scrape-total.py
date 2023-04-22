@@ -16,7 +16,7 @@ def explore_page(driver, data):
 
         product_image = element.find_element_by_css_selector("img").get_attribute("src")
         element_dict['image'] = product_image
-        element_dict['stock_info'] = "null"
+        # element_dict['stock_info'] = "null"
         element_dict['title'] = element.find_element_by_css_selector(".woocommerce-loop-product__title").text
         try:
             element_dict['price'] = element.find_element_by_css_selector(".price > ins").text
@@ -53,6 +53,7 @@ for link in links:
     brand = driver.find_element_by_css_selector("#page > div.archive-header-bg-image > div > header > h1").text
     if "Резултати" in brand:
         brand = brand.split("Резултати од пребарувањето за: “")[-1][:-1]
+    brand = brand.lower()
     print(brand)
     explore_page(driver,data)
 
