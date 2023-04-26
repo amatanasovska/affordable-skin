@@ -12,9 +12,9 @@ public class Product
     public int Id;
     public String Image { get; set; }
     public String Name { get; set; }
-    [ForeignKey("Seller")]
-    public String SellerName { get; set; }
-    public Seller Seller{ get; set; }
-
-
+    [ForeignKey("Brand")]
+    public String BrandName { get; set; }
+    public Brand Brand { get; set; }
+    public String Link { get; set; }
+    public int LowestPrice { get; set; }
 }

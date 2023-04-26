@@ -1,6 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Product} from "../product";
+import {Brand} from "../brand";
 
 
 @Component({
@@ -8,10 +9,10 @@ import {Product} from "../product";
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  public products: Product[] = []
+  public brands: Brand[] = []
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Product[]>(baseUrl + 'product').subscribe(result => {
-      this.products = result;
+    http.get<Brand[]>(baseUrl + 'brand').subscribe(result => {
+      this.brands = result;
     }, error => console.error(error));
   }
 

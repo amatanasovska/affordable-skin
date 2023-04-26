@@ -13,5 +13,8 @@ public class ProductService : IProductService
     }
 
     public List<Product> FindAll() => (List<Product>)_productRepository.FindAll();
-    
+    public List<ProductPrice> GetLatestPricesById(int id) => (List<ProductPrice>)_productRepository.FindLatestPricesByProductId(id);
+
+    public List<Product> GetProductsByBrandName(string brand) =>
+        (List<Product>)_productRepository.GetProductsByBrandName(brand);
 }

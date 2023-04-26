@@ -11,4 +11,5 @@ public class Seller
 {
     public String Name{ get; set; }
     public String Webpage{ get; set; }
+    public IEnumerable<ProductPrice> ProductsPrices { get; set; }
 }

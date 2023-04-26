@@ -22,5 +22,16 @@ public class ProductController :ControllerBase
     {
         return _productService.FindAll();
     }
-    
+
+    [HttpGet("prices/latest/{id:int}")]
+    public IEnumerable<ProductPrice> GetLatestPricesById(int id)
+    {
+        return _productService.GetLatestPricesById(id);
+    }
+
+    [HttpGet("{brand}")]
+    public IEnumerable<Product> GetProductsByBrandName(string brand)
+    {
+        return _productService.GetProductsByBrandName(brand);
+    }
 }

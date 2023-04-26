@@ -21,6 +21,16 @@ namespace affordable_skin.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("affordable_skin.Models.Brand", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Name");
+
+                    b.ToTable("Brand");
+                });
+
             modelBuilder.Entity("affordable_skin.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -29,13 +39,49 @@ namespace affordable_skin.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("BrandName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LowestPrice")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandName");
+
+                    b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("affordable_skin.Models.ProductPrice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<string>("SellerName")
                         .IsRequired()
@@ -43,25 +89,9 @@ namespace affordable_skin.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SellerName");
-
-                    b.ToTable("Product");
-                });
-
-            modelBuilder.Entity("affordable_skin.Models.ProductPrice", b =>
-                {
-                    b.Property<string>("Date")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.HasKey("Date", "ProductId");
-
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("SellerName");
 
                     b.ToTable("ProductPrice");
                 });
@@ -82,13 +112,13 @@ namespace affordable_skin.Migrations
 
             modelBuilder.Entity("affordable_skin.Models.Product", b =>
                 {
-                    b.HasOne("affordable_skin.Models.Seller", "Seller")
-                        .WithMany()
-                        .HasForeignKey("SellerName")
+                    b.HasOne("affordable_skin.Models.Brand", "Brand")
+                        .WithMany("Products")
+                        .HasForeignKey("BrandName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Seller");
+                    b.Navigation("Brand");
                 });
 
             modelBuilder.Entity("affordable_skin.Models.ProductPrice", b =>
@@ -99,7 +129,25 @@ namespace affordable_skin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("affordable_skin.Models.Seller", "Seller")
+                        .WithMany("ProductsPrices")
+                        .HasForeignKey("SellerName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Product");
+
+                    b.Navigation("Seller");
+                });
+
+            modelBuilder.Entity("affordable_skin.Models.Brand", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("affordable_skin.Models.Seller", b =>
+                {
+                    b.Navigation("ProductsPrices");
                 });
 #pragma warning restore 612, 618
         }

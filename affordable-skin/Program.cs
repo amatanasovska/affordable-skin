@@ -16,7 +16,8 @@ builder.Services.AddDbContext<ShopContext>(options => options.UseSqlServer(
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
-
+builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddCors(options =>
 {
