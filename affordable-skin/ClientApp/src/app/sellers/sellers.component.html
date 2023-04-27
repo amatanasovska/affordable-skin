@@ -1,0 +1,13 @@
+<h1 style="text-align: center" class="my-3">Shops available</h1>
+<div class="container" >
+
+  <div class="row">
+    <div *ngFor="let seller of sellers" class="card m-2 align-items-center justify-content-center" style="width: 18rem;">
+      <a style="text-decoration: none; color: black;" href="{{seller.webpage}}">
+      <div class="card-body">
+          <img style="width:100%"src="{{seller.logo}}">
+      </div>
+      </a>
+    </div>
+  </div>
+</div>
