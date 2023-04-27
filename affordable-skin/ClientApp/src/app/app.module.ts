@@ -15,6 +15,8 @@ import {ProductsCarouselComponent} from "./products-carousel/products-carousel.c
 import {ProductViewComponent} from "./product-view/product-view.component";
 import {BrandProductsComponent} from "./brand-products/brand-products.component";
 import {ProductPriceComponent} from "./product-price/product-price.component";
+import {SearchComponent} from "./search/search.component";
+import {ProductSearchResultComponent} from "./product-search-result/product-search-result.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {ProductPriceComponent} from "./product-price/product-price.component";
     ProductsCarouselComponent,
     ProductViewComponent,
     BrandProductsComponent,
-    ProductPriceComponent
+    ProductPriceComponent,
+    SearchComponent,
+    ProductSearchResultComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

@@ -1,0 +1,13 @@
+<div class="container w-100 d-flex justify-content-center outer-field-search" >
+  <div class="input-group rounded justify-content-center w-50 field-search" (focusout)="hideDropdown()">
+    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon"
+           [(ngModel)]="searchQuery" (ngModelChange)="search()"   />
+    <div>
+    <div class="dropdown-search" *ngIf=show  >
+      <app-product-search-result *ngFor="let product of searchResults" [product] = "product"  (onClicked)="hideDropdown()" >
+      </app-product-search-result>
+
+    </div>
+    </div>
+  </div>
+</div>

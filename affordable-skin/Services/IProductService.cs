@@ -9,4 +9,6 @@ public interface IProductService
     List<ProductPriceDto> GetLatestPricesById(int id);
 
     List<ProductDto> GetProductsByBrandName(string brand);
+
+    List<ProductDto> Search(string query);
 }

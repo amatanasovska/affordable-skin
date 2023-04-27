@@ -31,4 +31,15 @@ public class ProductService : IProductService
     public List<ProductDto> GetProductsByBrandName(string brand) =>
         (List<ProductDto>)_productRepository.GetProductsByBrandName(brand).Select(x =>
             new ProductDto(x.Id, x.Image, x.Name, x.BrandName, x.LowestPrice)).ToList();
+
+    public List<ProductDto> Search(string query)
+    {
+        List<ProductDto> ByBrand = _productRepository.GetProductsByBrandNameContaining(query).Select(x =>
+            new ProductDto(x.Id, x.Image, x.Name, x.BrandName, x.LowestPrice)).ToList();
+        List<ProductDto> ByName = _productRepository.GetProductsByNameContaining(query).Select(x =>
+            new ProductDto(x.Id, x.Image, x.Name, x.BrandName, x.LowestPrice)).ToList();
+
+        ByBrand.InsertRange(0,ByName);
+        return ByBrand;
+    }
 }

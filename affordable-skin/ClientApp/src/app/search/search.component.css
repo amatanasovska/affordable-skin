@@ -1,0 +1,17 @@
+.dropdown-search
+{
+  height:auto;
+  max-height:400px;
+  overflow-y:scroll;
+  position: relative;
+  top: 0;
+}
+.field-search
+{
+  position: absolute;
+
+}
+.outer-field-search
+{
+  position: relative;
+}

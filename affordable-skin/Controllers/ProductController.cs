@@ -35,4 +35,11 @@ public class ProductController :ControllerBase
     {
         return _productService.GetProductsByBrandName(brand);
     }
+
+    [HttpGet("search")]
+    public IEnumerable<ProductDto> SearchProducts([FromQuery(Name = "query")] string query)
+    {
+        return _productService.Search(query);
+    }
+
 }

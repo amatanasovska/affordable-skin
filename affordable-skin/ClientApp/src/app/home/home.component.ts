@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Product} from "../product";
-import {Brand} from "../brand";
+import {Brand} from "../models/brand";
+
 
 
 @Component({

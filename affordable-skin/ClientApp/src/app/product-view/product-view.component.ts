@@ -1,8 +1,8 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
-import {Product} from "../product";
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {ProductPrice} from "../productPrice";
+import {ProductPrice} from "../models/productPrice";
+import {Product} from "../models/product";
 
 @Component({
   selector: 'app-product-view',

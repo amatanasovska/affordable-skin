@@ -29,4 +29,18 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
             where product.BrandName == brand
             select product).ToList();
     }
+
+    public IEnumerable<Product> GetProductsByBrandNameContaining(string word)
+    {
+        return (from product in _context.Products
+            where product.BrandName.Contains(word)
+            select product);
+    }
+
+    public IEnumerable<Product> GetProductsByNameContaining(string word)
+    {
+        return (from product in _context.Products
+            where product.Name.Contains(word)
+            select product);
+    }
 }
