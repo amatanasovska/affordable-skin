@@ -15,6 +15,7 @@ import {BrandProductsComponent} from "./brand-products/brand-products.component"
 import {ProductPriceComponent} from "./product-price/product-price.component";
 import {SearchComponent} from "./search/search.component";
 import {ProductSearchResultComponent} from "./product-search-result/product-search-result.component";
+import {SellersComponent} from "./sellers/sellers.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ProductSearchResultComponent} from "./product-search-result/product-sear
     BrandProductsComponent,
     ProductPriceComponent,
     SearchComponent,
-    ProductSearchResultComponent
+    ProductSearchResultComponent,
+    SellersComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -37,6 +39,7 @@ import {ProductSearchResultComponent} from "./product-search-result/product-sear
       {path: '', component: HomeComponent, pathMatch: 'full'},
       {path: 'view-product', component: ProductViewComponent},
       {path: 'list-brand-products/:name', component: BrandProductsComponent},
+      {path: 'shops', component: SellersComponent},
     ]),
     CarouselModule
   ],

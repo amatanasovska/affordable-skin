@@ -18,4 +18,6 @@ public class Product
     public String BrandName { get; set; }
     public Brand Brand { get; set; }
     public int LowestPrice { get; set; }
+    public IEnumerable<ProductPrice> ProductsPrices { get; set; }
+
 }
