@@ -2,10 +2,10 @@
   <img class="card-img-top" src="{{product.image}}" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{product.name}}</h5>
-    <p class="card-text">Со цени од {{product.lowestPrice}} денари</p>
+    <p class="card-text">Prices starting from {{product.lowestPrice}} den.</p>
 
     <a [routerLink]="['/view-product']"
        [queryParams]="{ productToShow : product | json}"
-       class="btn btn-primary">Види повеќе</a>
+       class="btn btn-primary">See morе</a>
   </div>
 </div>

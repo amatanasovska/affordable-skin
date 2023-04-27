@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
     setTimeout(()=>
     {
       this.show=false;
-    },100)
+    },150)
 
   }
 

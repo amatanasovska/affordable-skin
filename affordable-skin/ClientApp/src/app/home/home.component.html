@@ -1,12 +1,17 @@
 <!--<app-products-carousel [products]="products"></app-products-carousel>-->
-
+<h1 style="text-align: center" class="my-3">Brands</h1>
 <div class="container" >
 
-
-  <div *ngFor="let brand of brands" class="card" style="width: 18rem;">
+<div class="row">
+  <div *ngFor="let brand of brands" class="card m-2" style="width: 18rem;">
   <div class="card-body">
-    <a [routerLink]="['/list-brand-products', brand.name]">{{brand.name}}</a>
+    <a style="text-decoration: none; color: black;" [routerLink]="['/list-brand-products', brand.name]">
+      <h4 style="text-align: center">
+        {{brand.name}}
+      </h4>
+    </a>
   </div>
   </div>
+</div>
 </div>
 

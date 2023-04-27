@@ -1,6 +1,7 @@
-<div class="container w-100 d-flex justify-content-center outer-field-search" >
-  <div class="input-group rounded justify-content-center w-50 field-search" (focusout)="hideDropdown()">
-    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon"
+<div class="w-100">
+<div class="container  d-flex justify-content-center outer-field-search" >
+  <div class=" rounded justify-content-center  field-search" (focusout)="hideDropdown()">
+    <input type="search" class="form-control rounded my-0" placeholder="Search" aria-label="Search" aria-describedby="search-addon"
            [(ngModel)]="searchQuery" (ngModelChange)="search()"   />
     <div>
     <div class="dropdown-search" *ngIf=show  >
@@ -10,4 +11,5 @@
     </div>
     </div>
   </div>
+</div>
 </div>

@@ -1,0 +1,11 @@
+<div class="card element-card">
+  <h5 class="card-header">{{product.name}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{product.brandName}}</h5>
+    <p class="card-text">From : {{product.lowestPrice}}den</p>
+    <a [routerLink]="['/view-product']"
+       [queryParams]="{ productToShow : product | json}" class="btn btn-primary"
+       (click)="clicked()"
+    >See more</a>
+  </div>
+</div>
