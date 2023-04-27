@@ -1,11 +1,12 @@
 using affordable_skin.Models;
+using affordable_skin.Models.dto;
 
 namespace affordable_skin.Services;
 
 public interface IProductService
 {
-    List<Product> FindAll();
-    List<ProductPrice> GetLatestPricesById(int id);
+    List<ProductDto> FindAll();
+    List<ProductPriceDto> GetLatestPricesById(int id);
 
-    List<Product> GetProductsByBrandName(string brand);
+    List<ProductDto> GetProductsByBrandName(string brand);
 }

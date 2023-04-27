@@ -1,17 +1,17 @@
 export class Product
 {
-  id: number;
+  key: number;
   image: string;
   name: string;
-  link: string;
+  brandName: string;
   lowestPrice: number;
 
 
   constructor() {
-    this.id= -1
+    this.key= -1
     this.image=""
     this.name = ""
-    this.link = "";
+    this.brandName = ""
     this.lowestPrice = 0;
   }
 }

@@ -1,4 +1,5 @@
 using affordable_skin.Models;
+using affordable_skin.Models.dto;
 using affordable_skin.Repositories.Impl;
 using affordable_skin.Services;
 using affordable_skin.Services.Impl;
@@ -18,19 +19,19 @@ public class ProductController :ControllerBase
         _productService = productService;
     }
     [HttpGet]
-    public IEnumerable<Product> Get()
+    public IEnumerable<ProductDto> Get()
     {
         return _productService.FindAll();
     }
 
     [HttpGet("prices/latest/{id:int}")]
-    public IEnumerable<ProductPrice> GetLatestPricesById(int id)
+    public IEnumerable<ProductPriceDto> GetLatestPricesById(int id)
     {
         return _productService.GetLatestPricesById(id);
     }
 
     [HttpGet("{brand}")]
-    public IEnumerable<Product> GetProductsByBrandName(string brand)
+    public IEnumerable<ProductDto> GetProductsByBrandName(string brand)
     {
         return _productService.GetProductsByBrandName(brand);
     }

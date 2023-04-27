@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using affordable_skin.Data;
 using affordable_skin.Repositories;
 using affordable_skin.Repositories.GenericRepository;
@@ -19,6 +21,9 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddControllersWithViews();
+
+
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(

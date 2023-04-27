@@ -14,6 +14,7 @@ import {CarouselModule} from 'primeng/carousel';
 import {ProductsCarouselComponent} from "./products-carousel/products-carousel.component";
 import {ProductViewComponent} from "./product-view/product-view.component";
 import {BrandProductsComponent} from "./brand-products/brand-products.component";
+import {ProductPriceComponent} from "./product-price/product-price.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {BrandProductsComponent} from "./brand-products/brand-products.component"
     ProductComponent,
     ProductsCarouselComponent,
     ProductViewComponent,
-    BrandProductsComponent
+    BrandProductsComponent,
+    ProductPriceComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

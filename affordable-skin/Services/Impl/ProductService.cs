@@ -1,4 +1,5 @@
 using affordable_skin.Models;
+using affordable_skin.Models.dto;
 using affordable_skin.Repositories;
 
 namespace affordable_skin.Services.Impl;
@@ -12,9 +13,22 @@ public class ProductService : IProductService
         _productRepository = productRepository;
     }
 
-    public List<Product> FindAll() => (List<Product>)_productRepository.FindAll();
-    public List<ProductPrice> GetLatestPricesById(int id) => (List<ProductPrice>)_productRepository.FindLatestPricesByProductId(id);
+    public List<ProductDto> FindAll()
+    {
+        return (List<ProductDto>)_productRepository.FindAll().Select(x =>
+            new ProductDto(x.Id, x.Image, x.Name, x.BrandName, x.LowestPrice)).ToList();
+    }
 
-    public List<Product> GetProductsByBrandName(string brand) =>
-        (List<Product>)_productRepository.GetProductsByBrandName(brand);
+    public List<ProductPriceDto> GetLatestPricesById(int id)
+    {
+        
+        List<ProductPrice> listProdPrice = (List<ProductPrice>)_productRepository.FindLatestPricesByProductId(id);
+
+        return listProdPrice.Select(x =>
+            new ProductPriceDto(x.Id, x.Name, x.SellerName, x.Date, x.Price, x.LinkToProduct)).ToList();
+    }
+
+    public List<ProductDto> GetProductsByBrandName(string brand) =>
+        (List<ProductDto>)_productRepository.GetProductsByBrandName(brand).Select(x =>
+            new ProductDto(x.Id, x.Image, x.Name, x.BrandName, x.LowestPrice)).ToList();
 }
