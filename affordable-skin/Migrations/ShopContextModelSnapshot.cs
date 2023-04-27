@@ -28,7 +28,7 @@ namespace affordable_skin.Migrations
 
                     b.HasKey("Name");
 
-                    b.ToTable("Brand");
+                    b.ToTable("Brand", (string)null);
                 });
 
             modelBuilder.Entity("affordable_skin.Models.Product", b =>
@@ -58,7 +58,7 @@ namespace affordable_skin.Migrations
 
                     b.HasIndex("BrandName");
 
-                    b.ToTable("Product");
+                    b.ToTable("Product", (string)null);
                 });
 
             modelBuilder.Entity("affordable_skin.Models.ProductPrice", b =>
@@ -97,7 +97,7 @@ namespace affordable_skin.Migrations
 
                     b.HasIndex("SellerName");
 
-                    b.ToTable("ProductPrice");
+                    b.ToTable("ProductPrice", (string)null);
                 });
 
             modelBuilder.Entity("affordable_skin.Models.Seller", b =>
@@ -111,7 +111,7 @@ namespace affordable_skin.Migrations
 
                     b.HasKey("Name");
 
-                    b.ToTable("Seller");
+                    b.ToTable("Seller", (string)null);
                 });
 
             modelBuilder.Entity("affordable_skin.Models.Product", b =>
